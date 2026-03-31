@@ -2,28 +2,58 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Scrollar App - Support & Privacy</title>
     <style>
-        body { font-family: -apple-system, sans-serif; padding: 40px; color: #333; line-height: 1.6; }
-        max-width { max-width: 600px; margin: auto; }
-        h1 { color: #000; }
-        .box { border: 1px solid #ddd; padding: 20px; border-radius: 8px; background: #fafafa; }
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; padding: 40px; color: #333; line-height: 1.6; background-color: #ffffff; }
+        .container { max-width: 600px; margin: auto; }
+        h1 { color: #000; border-bottom: 2px solid #000; padding-bottom: 10px; }
+        h3 { color: #222; margin-top: 0; }
+        .box { border: 1px solid #ddd; padding: 20px; border-radius: 12px; background: #fafafa; margin-top: 20px; }
+        ul { padding-left: 20px; }
+        li { margin-bottom: 10px; }
+        .brand-color { color: #007AFF; font-weight: bold; }
     </style>
 </head>
 <body>
-    <div class="max-width">
+    <div class="container">
         <h1>Scrollar</h1>
-        <p>Your gamified screen time manager and focus companion.</p>
+        <p><strong>Scrollar</strong> is a gamified screen time manager designed to help users transform their digital habits through a unique "Time-as-Currency" system.</p>
         
         <div class="box">
-            <h3>Support & Contact</h3>
-            <p>If you have questions, need help, or want to report a bug, please email us at: <strong>ntu.develop@gmail.com</strong></p>
+            <h3>About the App</h3>
+            <p>At the heart of Scrollar is <strong>Hemi</strong>, your personal digital piggy bank. The app calculates a personalized daily screen time budget based on your age, goals, and historical usage. </p>
+            <ul>
+                <li><strong>Earn & Save:</strong> Users are granted "coins" representing their daily focus time. </li>
+                <li><strong>The Mascot:</strong> As you save your budget, <strong>Hemi</strong> grows. Excessive scrolling reduces your budget, encouraging mindful usage.</li>
+                <li><strong>Progress Tracking:</strong> Detailed reports help users visualize their journey toward digital wellness.</li>
+            </ul>
         </div>
 
-        <div class="box" style="margin-top: 20px;">
+        <div class="box">
+            <h3>Key Features & Interactions</h3>
+            <p>Scrollar leverages Apple's latest <strong>Screen Time API</strong> to provide a secure, native experience:</p>
+            <ul>
+                <li><strong>Interactive Shields:</strong> Custom interfaces that block distracting apps and allow for real-time budget decisions.</li>
+                <li><strong>Shield Action Logic:</strong> Processes user interactions (like spending earned coins for focus extensions) directly from the locked screen.</li>
+                <li><strong>Device Activity Monitoring:</strong> Intelligently tracks thresholds to trigger shields automatically when limits are reached.</li>
+            </ul>
+        </div>
+
+        <div class="box">
             <h3>Privacy Policy</h3>
-            <p>Scrollar operates entirely locally on your device. We use the Apple Screen Time API (FamilyControls and DeviceActivity) to monitor your usage thresholds and apply app shields based on your goals.</p>
-            <p><strong>We do not collect, store, or transmit any of your personal app usage data to external servers.</strong> Your privacy is fully protected by Apple's secure infrastructure.</p>
+            <p>Privacy is our priority. <strong>Scrollar operates entirely locally on your device.</strong></p>
+            <ul>
+                <li>We use <strong>FamilyControls</strong> and <strong>DeviceActivity</strong> to monitor thresholds.</li>
+                <li><strong>No Data Collection:</strong> We do not collect, store, or transmit your personal app usage or scrolling data to any external servers.</li>
+                <li>All processing is handled within Apple's secure sandbox.</li>
+            </ul>
+        </div>
+
+        <div class="box">
+            <h3>Support & Contact</h3>
+            <p>Questions or feedback? We'd love to hear from you: <br>
+            <strong>Email:</strong> <a href="mailto:ntu.develop@gmail.com">ntu.develop@gmail.com</a></p>
         </div>
     </div>
 </body>
