@@ -4,229 +4,430 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Legal - Scrollar</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-color: #FDFBF7;
-            --accent-orange: #F27052;
-            --soft-yellow: #FFE194;
-            --text-dark: #1A1A1A;
-            --text-muted: #555555;
-            --card-bg: #FFFFFF;
+            --app-bg: #f6f5f1;
+            --app-text: #1a1a1a;
+            --app-accent: #ff8c5a;
+            --app-accent-dark: #f46b45;
+            --app-card-bg: #ffffff;
+            --app-muted: #6b7280;
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-dark);
-            line-height: 1.6;
-            margin: 0;
-            padding: 0;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: var(--app-bg);
+            color: var(--app-text);
+            overflow-x: hidden;
         }
 
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 40px 20px;
+        /* Animated background glow */
+        .header-glow {
+            position: absolute;
+            top: -100px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(255, 140, 90, 0.1) 0%, rgba(246, 245, 241, 0) 70%);
+            z-index: -1;
+            animation: pulse-glow 8s infinite alternate ease-in-out;
         }
 
-        header {
-            text-align: center;
-            margin-bottom: 50px;
+        @keyframes pulse-glow {
+            from { opacity: 0.5; transform: translateX(-50%) scale(1); }
+            to { opacity: 1; transform: translateX(-50%) scale(1.5); }
         }
 
-        .logo {
-            font-size: 2.5rem;
-            font-weight: 800;
-            color: var(--text-dark);
-            letter-spacing: -1px;
-            margin-bottom: 10px;
+        .content-section {
+            display: none;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
-        nav {
-            margin-bottom: 40px;
-            text-align: center;
-            position: sticky;
-            top: 0;
-            background: rgba(253, 251, 247, 0.9);
-            padding: 10px 0;
-            backdrop-filter: blur(10px);
-            z-index: 100;
+        .content-section.active {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
         }
 
-        nav a {
-            color: var(--accent-orange);
-            text-decoration: none;
-            margin: 0 15px;
+        /* Tab Switch Animation */
+        .tab-button {
+            position: relative;
+            color: var(--app-muted);
             font-weight: 600;
-            font-size: 0.9rem;
-            text-transform: uppercase;
+            transition: color 0.3s ease;
         }
 
-        section {
-            background: var(--card-bg);
-            padding: 40px;
+        .tab-button.active {
+            color: var(--app-text);
+        }
+
+        .tab-indicator {
+            position: absolute;
+            bottom: -2px;
+            height: 3px;
+            background: linear-gradient(to right, var(--app-accent), var(--app-accent-dark));
+            border-radius: 99px;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .legal-card {
+            background-color: var(--app-card-bg);
             border-radius: 24px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.03);
-            margin-bottom: 40px;
-            border: 1px solid rgba(0,0,0,0.05);
+            border: 1px solid rgba(0,0,0,0.03);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.02);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
-        h1, h2 {
-            color: var(--text-dark);
-            margin-top: 0;
+        .legal-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.04);
         }
 
-        h2 {
-            font-size: 1.4rem;
-            border-bottom: 2px solid var(--soft-yellow);
+        .legal-text h2 {
+            font-size: 1.15rem;
+            font-weight: 800;
+            margin-top: 2rem;
+            margin-bottom: 0.75rem;
+            color: var(--app-text);
+            display: flex;
+            align-items: center;
+        }
+
+        .legal-text h2::before {
+            content: '';
             display: inline-block;
-            margin-bottom: 20px;
-            padding-bottom: 4px;
+            width: 4px;
+            height: 18px;
+            background-color: var(--app-accent);
+            margin-right: 12px;
+            border-radius: 2px;
+            transition: transform 0.3s ease;
         }
 
-        h3 {
-            font-size: 1.1rem;
-            color: var(--accent-orange);
-            margin-top: 25px;
+        .legal-card:hover h2::before {
+            transform: scaleY(1.3);
         }
 
-        .last-updated {
-            color: var(--text-muted);
-            font-size: 0.9rem;
-            margin-bottom: 30px;
+        .legal-text p, .legal-text li {
+            font-size: 0.95rem;
+            line-height: 1.65;
+            color: #4b5563;
+            margin-bottom: 1rem;
         }
 
-        hr {
-            border: 0;
-            height: 1px;
-            background: var(--soft-yellow);
-            margin: 40px 0;
+        .legal-text ul {
+            list-style-type: none;
+            padding-left: 0.5rem;
+            margin-bottom: 1.5rem;
         }
 
-        ul {
-            padding-left: 20px;
+        .legal-text ul li {
+            position: relative;
+            padding-left: 1.5rem;
+            opacity: 0;
+            transform: translateX(-10px);
+            animation: slide-in 0.4s forwards;
         }
 
-        li {
-            margin-bottom: 10px;
+        @keyframes slide-in {
+            to { opacity: 1; transform: translateX(0); }
         }
 
-        a {
-            color: var(--accent-orange);
-            text-decoration: none;
+        /* Staggered list animations */
+        .legal-text ul li:nth-child(1) { animation-delay: 0.1s; }
+        .legal-text ul li:nth-child(2) { animation-delay: 0.15s; }
+        .legal-text ul li:nth-child(3) { animation-delay: 0.2s; }
+        .legal-text ul li:nth-child(4) { animation-delay: 0.25s; }
+        .legal-text ul li:nth-child(5) { animation-delay: 0.3s; }
+
+        .legal-text ul li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: var(--app-accent);
+            font-weight: bold;
         }
 
-        a:hover {
-            text-decoration: underline;
+        .btn-gradient {
+            background: linear-gradient(to right, var(--app-accent), var(--app-accent-dark));
+            color: white;
+            border-radius: 16px;
+            font-weight: 700;
+            transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 4px 15px rgba(255, 140, 90, 0.3);
         }
 
-        footer {
-            text-align: center;
-            font-size: 0.8rem;
-            color: var(--text-muted);
-            margin-top: 50px;
-            padding-bottom: 40px;
+        .btn-gradient:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(255, 140, 90, 0.4);
         }
 
-        /* Mobile Adjustments */
-        @media (max-width: 600px) {
-            .container { padding: 20px; }
-            section { padding: 25px; }
-            .logo { font-size: 2rem; }
+        .btn-gradient:active {
+            transform: scale(0.95);
+        }
+
+        .icon-container {
+            transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .legal-card:hover .icon-container {
+            transform: rotate(5deg) scale(1.1);
         }
     </style>
 </head>
-<body>
+<body class="antialiased">
 
-    <div class="container">
-        <header>
-            <div class="logo">scrollar</div>
-            <p>Your mindfully managed digital life.</p>
+    <div class="header-glow"></div>
+
+    <div class="max-w-3xl mx-auto px-6 py-12">
+        <!-- Header -->
+        <header class="text-center mb-12 relative">
+            <h1 class="text-4xl font-black tracking-tight text-slate-900 mb-2 transition-all hover:tracking-widest cursor-default">scrollar</h1>
+            <div class="inline-block px-4 py-1 bg-green-100 text-green-700 text-xs font-bold rounded-full mb-4 animate-bounce">
+                LEGAL PORTAL ✨
+            </div>
         </header>
 
-        <nav>
-            <a href="#privacy">Privacy Policy</a>
-            <a href="#terms">Terms of Use</a>
-        </nav>
+        <!-- Navigation Tabs -->
+        <div class="flex justify-center mb-10 gap-8 relative">
+            <button onclick="showSection('privacy')" id="btn-privacy" class="tab-button active px-2 py-2">
+                Privacy Policy
+            </button>
+            <button onclick="showSection('terms')" id="btn-terms" class="tab-button px-2 py-2">
+                Terms of Use
+            </button>
+            <!-- Animated sliding underline -->
+            <div id="indicator" class="tab-indicator"></div>
+        </div>
 
-        <section id="privacy">
-            <h1>Privacy Policy</h1>
-            <p class="last-updated">Last Updated: April 21, 2026</p>
+        <!-- Privacy Policy Section -->
+        <div id="privacy" class="content-section active">
+            <div class="legal-card p-8 sm:p-12">
+                <div class="legal-text">
+                    <div class="flex justify-between items-start mb-8">
+                        <div>
+                            <h1 class="text-2xl font-black text-slate-900">Privacy Policy</h1>
+                            <p class="text-xs font-bold text-slate-400 mt-1 uppercase tracking-wider">Last Updated: April 21, 2026</p>
+                        </div>
+                        <div class="icon-container bg-orange-50 p-3 rounded-2xl">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-orange-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.040L3 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622l-1.382-3.016z" />
+                            </svg>
+                        </div>
+                    </div>
 
-            <h2>1. Introduction</h2>
-            <p>Scrollar ("we," "our," or "the App") is a screen time management application developed by NTU Develop. This Privacy Policy explains how we collect, use, and protect your information in compliance with Apple's App Store Guidelines and applicable privacy laws.</p>
+                    <h2>1. Introduction</h2>
+                    <p>Scrollar ("we," "our," or "the App") is a screen time management application developed by NTU Develop. This Privacy Policy explains how we collect, use, and protect your information in compliance with Apple's App Store Guidelines and applicable privacy laws.</p>
 
-            <h2>2. Data We Collect</h2>
-            <p>Scrollar is a <strong>local-first application</strong>. All personal data is stored exclusively on your device and is never transmitted to our servers.</p>
-            
-            <h3>Information you provide during setup:</h3>
-            <ul>
-                <li>First name, Age range, and Profession category</li>
-                <li>Screen time reduction goals and goal intensity</li>
-                <li>Avatar preference</li>
-            </ul>
+                    <h2>2. Data We Collect</h2>
+                    <p>Scrollar is a local-first application. All personal data is stored exclusively on your device and is never transmitted to our servers.</p>
+                    <p><strong>Information you provide during setup:</strong></p>
+                    <ul>
+                        <li>First name</li>
+                        <li>Age range</li>
+                        <li>Profession category</li>
+                        <li>Screen time reduction goals and goal intensity</li>
+                        <li>Avatar preference</li>
+                    </ul>
+                    <p><strong>Information generated through app use:</strong></p>
+                    <ul>
+                        <li>Daily screen time usage statistics (read from your device via iOS Screen Time APIs)</li>
+                        <li>App budget settings and group configurations</li>
+                        <li>Usage history snapshots (automatically pruned after 30 days)</li>
+                        <li>Pixel Pig progress (level, saved minutes, streaks)</li>
+                    </ul>
 
-            <h3>Information generated through app use:</h3>
-            <ul>
-                <li>Daily screen time usage statistics (read via iOS Screen Time APIs)</li>
-                <li>App budget settings and group configurations</li>
-                <li>Usage history snapshots (automatically pruned after 30 days)</li>
-                <li>Pixel Pig progress (level, saved minutes, streaks)</li>
-            </ul>
+                    <h2>3. How Your Data Is Stored</h2>
+                    <p>All data listed above is stored locally on your device using an encrypted local database. We do not operate servers, databases, or cloud infrastructure that store your personal data. Your data is included in your standard iOS device backups (iCloud or local). Uninstalling the App permanently deletes all locally stored data.</p>
 
-            <h2>3. How Your Data Is Stored</h2>
-            <p>All data listed above is stored locally on your device using an encrypted local database. We do not operate servers or cloud infrastructure that store your personal data. Your data is included in your standard iOS device backups (iCloud or local). Uninstalling the App permanently deletes all locally stored data.</p>
+                    <h2>4. Third-Party Services</h2>
+                    <p><strong>RevenueCat (In-App Purchase Processing)</strong><br>
+                    We use RevenueCat to manage subscriptions and in-app purchases. RevenueCat receives transaction-related data processed through the Apple App Store, including purchase receipts, subscription status, and an anonymous device identifier. RevenueCat does not receive your screen time data, usage statistics, profile information, or any other personal data from Scrollar. For more information, see RevenueCat's Privacy Policy: <a href="https://www.revenuecat.com/privacy" class="text-orange-600 font-semibold hover:underline">https://www.revenuecat.com/privacy</a></p>
+                    <p><strong>Apple App Store</strong><br>
+                    Purchases are processed by Apple. Apple's data practices are governed by Apple's Privacy Policy: <a href="https://www.apple.com/privacy/" class="text-orange-600 font-semibold hover:underline">https://www.apple.com/privacy/</a></p>
 
-            <h2>4. Third-Party Services</h2>
-            <p><strong>RevenueCat:</strong> Used to manage subscriptions. They receive transaction-related data (receipts, subscription status) via Apple but <strong>do not</strong> receive your screen time, usage stats, or profile info. <a href="https://www.revenuecat.com/privacy" target="_blank">View RevenueCat Privacy Policy</a>.</p>
-            <p><strong>Apple App Store:</strong> Purchases are processed by Apple. <a href="https://www.apple.com/privacy/" target="_blank">View Apple Privacy Policy</a>.</p>
+                    <h2>5. Data We Do NOT Collect</h2>
+                    <ul>
+                        <li>We do not collect analytics or behavioral tracking data</li>
+                        <li>We do not use crash reporting services</li>
+                        <li>We do not use advertising SDKs or ad tracking</li>
+                        <li>We do not create user accounts or maintain server-side user profiles</li>
+                        <li>We do not collect device identifiers for our own purposes</li>
+                        <li>We do not share, sell, or rent your personal data to third parties</li>
+                    </ul>
 
-            <h2>5. Data We Do NOT Collect</h2>
-            <ul>
-                <li>We do not collect analytics or behavioral tracking data.</li>
-                <li>We do not use crash reporting services or advertising SDKs.</li>
-                <li>We do not create user accounts or maintain server-side profiles.</li>
-                <li>We do not share, sell, or rent your personal data to third parties.</li>
-            </ul>
+                    <h2>6. Device Permissions</h2>
+                    <p>Scrollar requests the following iOS permissions:</p>
+                    <ul>
+                        <li><strong>Screen Time / Family Controls:</strong> Required to read app usage data and apply app blocking. This data remains on your device.</li>
+                        <li><strong>Notifications:</strong> Optional. Used to send local nudge reminders when approaching your budget limit. No push notification servers are involved.</li>
+                    </ul>
 
-            <h2>6. Contact Us</h2>
-            <p>Email: <a href="mailto:ntu.develop@gmail.com">ntu.develop@gmail.com</a><br>
-            Website: <a href="https://ntudevelop.github.io/Scrollar/" target="_blank">ntudevelop.github.io/Scrollar/</a></p>
-        </section>
+                    <h2>7. Children's Privacy</h2>
+                    <p>Scrollar is not directed at children under the age of 13. We do not knowingly collect personal information from children under 13. The App requires iOS Screen Time authorization, which is managed by the device owner.</p>
 
-        <section id="terms">
-            <h1>Terms of Use</h1>
-            <p class="last-updated">Last Updated: April 21, 2026</p>
+                    <h2>8. Data Retention and Deletion</h2>
+                    <p>Usage history is automatically pruned after 30 days. All other data persists until you uninstall the App. You may delete all data at any time by uninstalling Scrollar from your device. There is no server-side data to request deletion of.</p>
 
-            <h2>1. Acceptance of Terms</h2>
-            <p>By downloading, installing, or using Scrollar, you agree to be bound by these Terms of Use. If you do not agree to these terms, do not use the App.</p>
+                    <h2>9. Security</h2>
+                    <p>Your data is protected by iOS Data Protection, which encrypts data at the filesystem level when your device is locked. We do not implement additional custom encryption as we rely on Apple's platform-level protections.</p>
 
-            <h2>2. Description of Service</h2>
-            <p>Scrollar is a screen time management application that helps you set daily usage budgets, block distracting apps, and track your progress. The App operates entirely on your device with no backend server dependency.</p>
+                    <h2>10. Changes to This Policy</h2>
+                    <p>We may update this Privacy Policy from time to time. Changes will be reflected in the "Last Updated" date above. Continued use of the App after changes constitutes acceptance of the updated policy.</p>
 
-            <h2>3. Subscriptions (Scrollar Premium)</h2>
-            <p>Scrollar offers optional premium features available through auto-renewable subscriptions or one-time purchases.</p>
-            <ul>
-                <li>Payment is charged to your Apple ID account at confirmation.</li>
-                <li>Subscriptions renew unless cancelled 24 hours before the period ends.</li>
-                <li>Manage or cancel subscriptions in your Apple ID Account Settings.</li>
-                <li>Refunds must be requested through Apple: <a href="https://support.apple.com/en-us/HT204084" target="_blank">support.apple.com/en-us/HT204084</a></li>
-            </ul>
+                    <h2>11. Contact Us</h2>
+                    <p>If you have questions about this Privacy Policy, contact us at:</p>
+                    <div class="mt-4 p-6 bg-slate-50 rounded-2xl border border-slate-100 transition-all hover:bg-white hover:shadow-md">
+                        <p class="mb-2"><strong>Email:</strong> <a href="mailto:ntu.develop@gmail.com" class="text-orange-600 font-semibold">ntu.develop@gmail.com</a></p>
+                        <p class="mb-0"><strong>Support Form:</strong> <a href="https://forms.gle/VFtqMrFcUKrkuKGj7" class="text-orange-600 font-semibold">https://forms.gle/VFtqMrFcUKrkuKGj7</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-            <h2>4. Screen Time Data</h2>
-            <p>Scrollar uses Apple's Screen Time and FamilyControls frameworks. Accuracy and availability depend on iOS and are subject to Apple's platform limitations. Tracking may lag a few minutes behind actual usage due to system characteristics.</p>
+        <!-- Terms of Use Section -->
+        <div id="terms" class="content-section">
+            <div class="legal-card p-8 sm:p-12">
+                <div class="legal-text">
+                    <div class="flex justify-between items-start mb-8">
+                        <div>
+                            <h1 class="text-2xl font-black text-slate-900">Terms of Use</h1>
+                            <p class="text-xs font-bold text-slate-400 mt-1 uppercase tracking-wider">Last Updated: April 21, 2026</p>
+                        </div>
+                        <div class="icon-container bg-orange-50 p-3 rounded-2xl">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-orange-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                            </svg>
+                        </div>
+                    </div>
 
-            <h2>5. Intellectual Property</h2>
-            <p>All content, design, code, graphics, and the <strong>Pixel Pig</strong> character are the intellectual property of NTU Develop. You may not reproduce or distribute any part of the App without written permission.</p>
+                    <h2>1. Acceptance of Terms</h2>
+                    <p>By downloading, installing, or using Scrollar ("the App"), you agree to be bound by these Terms of Use. If you do not agree to these terms, do not use the App.</p>
 
-            <h2>6. Limitation of Liability</h2>
-            <p>NTU DEVELOP SHALL NOT BE LIABLE FOR ANY INDIRECT, INCIDENTAL, OR CONSEQUENTIAL DAMAGES ARISING FROM YOUR USE OF THE APP, INCLUDING LOSS OF DATA OR PRODUCTIVITY.</p>
-        </section>
+                    <h2>2. Description of Service</h2>
+                    <p>Scrollar is a screen time management application that helps you set daily usage budgets, block distracting apps, and track your progress. The App operates entirely on your device with no backend server dependency.</p>
 
-        <footer>
-            &copy; 2026 NTU Develop. All rights reserved.
-        </footer>
+                    <h2>3. Eligibility</h2>
+                    <p>You must be at least 13 years of age to use Scrollar. By using the App, you represent that you meet this requirement.</p>
+
+                    <h2>4. License</h2>
+                    <p>We grant you a limited, non-exclusive, non-transferable, revocable license to use the App for your personal, non-commercial purposes, subject to these Terms and the Apple Media Services Terms and Conditions.</p>
+
+                    <h2>5. Subscriptions and In-App Purchases</h2>
+                    <p>Scrollar offers optional premium features ("Scrollar Premium") available through auto-renewable subscriptions or one-time purchases via the Apple App Store.</p>
+                    <ul>
+                        <li>Payment is charged to your Apple ID account at confirmation of purchase.</li>
+                        <li>Subscriptions automatically renew unless cancelled at least 24 hours before the end of the current billing period.</li>
+                        <li>You can manage and cancel subscriptions in your Apple ID Account Settings.</li>
+                        <li>No refunds are provided for the unused portion of a subscription period. Refund requests must be directed to Apple: <a href="https://support.apple.com/en-us/HT204084" class="text-orange-600 font-semibold hover:underline">https://support.apple.com/en-us/HT204084</a></li>
+                    </ul>
+                    <p>Free features include basic screen time tracking, up to 2 app groups, app blocking, and Pixel Pig progression. Premium features include CEO Mode, unlimited app groups, and Insights.</p>
+
+                    <h2>6. Screen Time Data and Blocking</h2>
+                    <p>Scrollar uses Apple's Screen Time and FamilyControls frameworks to read usage data and apply app restrictions. The accuracy and availability of these features depend on iOS and are subject to Apple's platform limitations. Scrollar does not guarantee real-time accuracy of usage data — threshold-based tracking may lag a few minutes behind actual usage due to iOS platform characteristics.</p>
+
+                    <h2>7. No Guarantee of Service</h2>
+                    <p>Scrollar is a local-first application with no server infrastructure. While we strive to provide a reliable experience:</p>
+                    <ul>
+                        <li>App blocking and usage tracking depend on iOS system frameworks that may change with OS updates.</li>
+                        <li>We do not guarantee uninterrupted or error-free operation.</li>
+                        <li>Data stored locally is subject to device storage limitations and user actions (e.g., uninstalling the App deletes all data).</li>
+                    </ul>
+
+                    <h2>8. User Responsibilities</h2>
+                    <p>You agree to:</p>
+                    <ul>
+                        <li>Use the App only for its intended purpose of personal screen time management.</li>
+                        <li>Not attempt to reverse-engineer, decompile, or modify the App.</li>
+                        <li>Not use the App in any way that violates applicable laws or regulations.</li>
+                    </ul>
+
+                    <h2>9. Intellectual Property</h2>
+                    <p>All content, design, code, graphics, and the Pixel Pig character are the intellectual property of NTU Develop. You may not reproduce, distribute, or create derivative works from any part of the App without written permission.</p>
+
+                    <h2>10. Disclaimer of Warranties</h2>
+                    <p>THE APP IS PROVIDED "AS IS" AND "AS AVAILABLE" WITHOUT WARRANTIES OF ANY KIND, EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND NON-INFRINGEMENT. WE DO NOT WARRANT THAT THE APP WILL BE UNINTERRUPTED, SECURE, OR ERROR-FREE.</p>
+
+                    <h2>11. Limitation of Liability</h2>
+                    <p>TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, NTU DEVELOP SHALL NOT BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, OR PUNITIVE DAMAGES ARISING OUT OF OR RELATED TO YOUR USE OF THE APP, INCLUDING BUT NOT LIMITED TO LOSS OF DATA, LOSS OF PRODUCTIVITY, OR DEVICE ISSUES.</p>
+
+                    <h2>12. Termination</h2>
+                    <p>We reserve the right to terminate or suspend access to the App at any time, without notice, for conduct that we believe violates these Terms or is harmful to other users or the App.</p>
+
+                    <h2>13. Governing Law</h2>
+                    <p>These Terms shall be governed by and construed in accordance with the laws of [your jurisdiction], without regard to its conflict of law provisions.</p>
+
+                    <h2>14. Changes to These Terms</h2>
+                    <p>We may modify these Terms at any time. Updated terms will be reflected in the "Last Updated" date. Your continued use of the App constitutes acceptance of the modified terms.</p>
+
+                    <h2>15. Contact Us</h2>
+                    <p>For questions about these Terms, contact us at:</p>
+                    <div class="mt-4 p-6 bg-slate-50 rounded-2xl border border-slate-100 transition-all hover:bg-white hover:shadow-md">
+                        <p class="mb-2"><strong>Email:</strong> <a href="mailto:ntu.develop@gmail.com" class="text-orange-600 font-semibold">ntu.develop@gmail.com</a></p>
+                        <p class="mb-0"><strong>Support Form:</strong> <a href="https://forms.gle/VFtqMrFcUKrkuKGj7" class="text-orange-600 font-semibold">https://forms.gle/VFtqMrFcUKrkuKGj7</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="mt-12 text-center">
+            <button onclick="window.scrollTo({top:0, behavior:'smooth'})" class="btn-gradient px-8 py-3">
+                Back to Top
+            </button>
+            <p class="mt-8 text-slate-400 text-xs font-medium">
+                &copy; 2026 NTU Develop. Built with care for your focus.
+            </p>
+        </div>
     </div>
 
+    <script>
+        function updateIndicator() {
+            const activeBtn = document.querySelector('.tab-button.active');
+            const indicator = document.getElementById('indicator');
+            if (activeBtn && indicator) {
+                indicator.style.width = (activeBtn.offsetWidth * 0.6) + 'px';
+                indicator.style.left = (activeBtn.offsetLeft + (activeBtn.offsetWidth * 0.2)) + 'px';
+            }
+        }
+
+        function showSection(section) {
+            const sections = document.querySelectorAll('.content-section');
+            const buttons = document.querySelectorAll('.tab-button');
+            
+            // Handle fade out current
+            const currentActive = document.querySelector('.content-section.active');
+            if (currentActive) {
+                currentActive.style.opacity = '0';
+                currentActive.style.transform = 'translateY(20px)';
+            }
+
+            setTimeout(() => {
+                sections.forEach(s => {
+                    s.classList.remove('active');
+                    s.style.display = 'none';
+                });
+                buttons.forEach(b => b.classList.remove('active'));
+                
+                const target = document.getElementById(section);
+                target.style.display = 'block';
+                
+                // Force reflow
+                target.offsetHeight;
+                
+                target.classList.add('active');
+                document.getElementById('btn-' + section).classList.add('active');
+                updateIndicator();
+            }, 300);
+        }
+
+        // Initialize indicator position on load
+        window.addEventListener('load', updateIndicator);
+        window.addEventListener('resize', updateIndicator);
+    </script>
 </body>
 </html>
