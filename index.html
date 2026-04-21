@@ -3,58 +3,230 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Scrollar App - Support & Privacy</title>
+    <title>Legal - Scrollar</title>
     <style>
-        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; padding: 40px; color: #333; line-height: 1.6; background-color: #ffffff; }
-        .container { max-width: 600px; margin: auto; }
-        h1 { color: #000; border-bottom: 2px solid #000; padding-bottom: 10px; }
-        h3 { color: #222; margin-top: 0; }
-        .box { border: 1px solid #ddd; padding: 20px; border-radius: 12px; background: #fafafa; margin-top: 20px; }
-        ul { padding-left: 20px; }
-        li { margin-bottom: 10px; }
-        .brand-color { color: #007AFF; font-weight: bold; }
+        :root {
+            --bg-color: #FDFBF7;
+            --accent-orange: #F27052;
+            --soft-yellow: #FFE194;
+            --text-dark: #1A1A1A;
+            --text-muted: #555555;
+            --card-bg: #FFFFFF;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-dark);
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .logo {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--text-dark);
+            letter-spacing: -1px;
+            margin-bottom: 10px;
+        }
+
+        nav {
+            margin-bottom: 40px;
+            text-align: center;
+            position: sticky;
+            top: 0;
+            background: rgba(253, 251, 247, 0.9);
+            padding: 10px 0;
+            backdrop-filter: blur(10px);
+            z-index: 100;
+        }
+
+        nav a {
+            color: var(--accent-orange);
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+        }
+
+        section {
+            background: var(--card-bg);
+            padding: 40px;
+            border-radius: 24px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+            margin-bottom: 40px;
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+
+        h1, h2 {
+            color: var(--text-dark);
+            margin-top: 0;
+        }
+
+        h2 {
+            font-size: 1.4rem;
+            border-bottom: 2px solid var(--soft-yellow);
+            display: inline-block;
+            margin-bottom: 20px;
+            padding-bottom: 4px;
+        }
+
+        h3 {
+            font-size: 1.1rem;
+            color: var(--accent-orange);
+            margin-top: 25px;
+        }
+
+        .last-updated {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 30px;
+        }
+
+        hr {
+            border: 0;
+            height: 1px;
+            background: var(--soft-yellow);
+            margin: 40px 0;
+        }
+
+        ul {
+            padding-left: 20px;
+        }
+
+        li {
+            margin-bottom: 10px;
+        }
+
+        a {
+            color: var(--accent-orange);
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        footer {
+            text-align: center;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-top: 50px;
+            padding-bottom: 40px;
+        }
+
+        /* Mobile Adjustments */
+        @media (max-width: 600px) {
+            .container { padding: 20px; }
+            section { padding: 25px; }
+            .logo { font-size: 2rem; }
+        }
     </style>
 </head>
 <body>
+
     <div class="container">
-        <h1>Scrollar - Take back control of your screen time</h1>
-        <p><strong>Scrollar</strong> is a gamified screen time manager designed to help users transform their digital habits through a unique "Time-as-Currency" system.</p>
-        
-        <div class="box">
-            <h3>About the App</h3>
-            <p>At the heart of Scrollar is <strong>Hammy</strong>, your personal digital piggy bank. The app calculates a personalized daily screen time budget based on your age, goals, and historical usage. </p>
-            <ul>
-                <li><strong>Earn & Save:</strong> Users are granted "coins" representing their daily focus time. </li>
-                <li><strong>The Mascot:</strong> As you save your budget, <strong>Hammy</strong> grows. Excessive scrolling reduces your budget, encouraging mindful usage.</li>
-                <li><strong>Progress Tracking:</strong> Detailed reports help users visualize their journey toward digital wellness.</li>
-            </ul>
-        </div>
+        <header>
+            <div class="logo">scrollar</div>
+            <p>Your mindfully managed digital life.</p>
+        </header>
 
-        <div class="box">
-            <h3>Key Features & Interactions</h3>
-            <p>Scrollar leverages Apple's latest <strong>Screen Time API</strong> to provide a secure, native experience:</p>
-            <ul>
-                <li><strong>Interactive Shields:</strong> Custom interfaces that block distracting apps and allow for real-time budget decisions.</li>
-                <li><strong>Shield Action Logic:</strong> Processes user interactions (like spending earned coins for focus extensions) directly from the locked screen.</li>
-                <li><strong>Device Activity Monitoring:</strong> Intelligently tracks thresholds to trigger shields automatically when limits are reached.</li>
-            </ul>
-        </div>
+        <nav>
+            <a href="#privacy">Privacy Policy</a>
+            <a href="#terms">Terms of Use</a>
+        </nav>
 
-        <div class="box">
-            <h3>Privacy Policy</h3>
-            <p>Privacy is our priority. <strong>Scrollar operates entirely locally on your device.</strong></p>
-            <ul>
-                <li>We use <strong>FamilyControls</strong> and <strong>DeviceActivity</strong> to monitor thresholds.</li>
-                <li><strong>No Data Collection:</strong> We do not collect, store, or transmit your personal app usage or scrolling data to any external servers.</li>
-                <li>All processing is handled within Apple's secure sandbox.</li>
-            </ul>
-        </div>
+        <section id="privacy">
+            <h1>Privacy Policy</h1>
+            <p class="last-updated">Last Updated: April 21, 2026</p>
 
-        <div class="box">
-            <h3>Support & Contact</h3>
-            <p>Questions or feedback? We'd love to hear from you: <br>
-            <strong>Email:</strong> <a href="mailto:ntu.develop@gmail.com">ntu.develop@gmail.com</a></p>
-        </div>
+            <h2>1. Introduction</h2>
+            <p>Scrollar ("we," "our," or "the App") is a screen time management application developed by NTU Develop. This Privacy Policy explains how we collect, use, and protect your information in compliance with Apple's App Store Guidelines and applicable privacy laws.</p>
+
+            <h2>2. Data We Collect</h2>
+            <p>Scrollar is a <strong>local-first application</strong>. All personal data is stored exclusively on your device and is never transmitted to our servers.</p>
+            
+            <h3>Information you provide during setup:</h3>
+            <ul>
+                <li>First name, Age range, and Profession category</li>
+                <li>Screen time reduction goals and goal intensity</li>
+                <li>Avatar preference</li>
+            </ul>
+
+            <h3>Information generated through app use:</h3>
+            <ul>
+                <li>Daily screen time usage statistics (read via iOS Screen Time APIs)</li>
+                <li>App budget settings and group configurations</li>
+                <li>Usage history snapshots (automatically pruned after 30 days)</li>
+                <li>Pixel Pig progress (level, saved minutes, streaks)</li>
+            </ul>
+
+            <h2>3. How Your Data Is Stored</h2>
+            <p>All data listed above is stored locally on your device using an encrypted local database. We do not operate servers or cloud infrastructure that store your personal data. Your data is included in your standard iOS device backups (iCloud or local). Uninstalling the App permanently deletes all locally stored data.</p>
+
+            <h2>4. Third-Party Services</h2>
+            <p><strong>RevenueCat:</strong> Used to manage subscriptions. They receive transaction-related data (receipts, subscription status) via Apple but <strong>do not</strong> receive your screen time, usage stats, or profile info. <a href="https://www.revenuecat.com/privacy" target="_blank">View RevenueCat Privacy Policy</a>.</p>
+            <p><strong>Apple App Store:</strong> Purchases are processed by Apple. <a href="https://www.apple.com/privacy/" target="_blank">View Apple Privacy Policy</a>.</p>
+
+            <h2>5. Data We Do NOT Collect</h2>
+            <ul>
+                <li>We do not collect analytics or behavioral tracking data.</li>
+                <li>We do not use crash reporting services or advertising SDKs.</li>
+                <li>We do not create user accounts or maintain server-side profiles.</li>
+                <li>We do not share, sell, or rent your personal data to third parties.</li>
+            </ul>
+
+            <h2>6. Contact Us</h2>
+            <p>Email: <a href="mailto:ntu.develop@gmail.com">ntu.develop@gmail.com</a><br>
+            Website: <a href="https://ntudevelop.github.io/Scrollar/" target="_blank">ntudevelop.github.io/Scrollar/</a></p>
+        </section>
+
+        <section id="terms">
+            <h1>Terms of Use</h1>
+            <p class="last-updated">Last Updated: April 21, 2026</p>
+
+            <h2>1. Acceptance of Terms</h2>
+            <p>By downloading, installing, or using Scrollar, you agree to be bound by these Terms of Use. If you do not agree to these terms, do not use the App.</p>
+
+            <h2>2. Description of Service</h2>
+            <p>Scrollar is a screen time management application that helps you set daily usage budgets, block distracting apps, and track your progress. The App operates entirely on your device with no backend server dependency.</p>
+
+            <h2>3. Subscriptions (Scrollar Premium)</h2>
+            <p>Scrollar offers optional premium features available through auto-renewable subscriptions or one-time purchases.</p>
+            <ul>
+                <li>Payment is charged to your Apple ID account at confirmation.</li>
+                <li>Subscriptions renew unless cancelled 24 hours before the period ends.</li>
+                <li>Manage or cancel subscriptions in your Apple ID Account Settings.</li>
+                <li>Refunds must be requested through Apple: <a href="https://support.apple.com/en-us/HT204084" target="_blank">support.apple.com/en-us/HT204084</a></li>
+            </ul>
+
+            <h2>4. Screen Time Data</h2>
+            <p>Scrollar uses Apple's Screen Time and FamilyControls frameworks. Accuracy and availability depend on iOS and are subject to Apple's platform limitations. Tracking may lag a few minutes behind actual usage due to system characteristics.</p>
+
+            <h2>5. Intellectual Property</h2>
+            <p>All content, design, code, graphics, and the <strong>Pixel Pig</strong> character are the intellectual property of NTU Develop. You may not reproduce or distribute any part of the App without written permission.</p>
+
+            <h2>6. Limitation of Liability</h2>
+            <p>NTU DEVELOP SHALL NOT BE LIABLE FOR ANY INDIRECT, INCIDENTAL, OR CONSEQUENTIAL DAMAGES ARISING FROM YOUR USE OF THE APP, INCLUDING LOSS OF DATA OR PRODUCTIVITY.</p>
+        </section>
+
+        <footer>
+            &copy; 2026 NTU Develop. All rights reserved.
+        </footer>
     </div>
+
 </body>
 </html>
